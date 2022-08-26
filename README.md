@@ -5,6 +5,7 @@
 Launcher allows to start the ProTanki [official client](https://protanki-online.com/) with the [chainloader](https://github.com/protanki-re/client-chainloader) to connect to custom game and resource server.
 
 ## Usage
+[Video tutorial](https://youtu.be/uwxIo3vDlmc) is available.
 
 ### Creating client profile
 
