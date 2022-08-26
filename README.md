@@ -6,6 +6,8 @@ Launcher allows to start the ProTanki [official client](https://protanki-online.
 
 ## Usage
 
+[Video tutorial](https://youtu.be/uwxIo3vDlmc) is available.
+
 ### Creating client profile
 
 First, you need to create a client profile.
