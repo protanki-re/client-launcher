@@ -67,12 +67,13 @@ class EditProfile : CliktCommand(name = "edit", help = "Edit the settings of the
           }
         }
         gameLibrary?.let {
-          val gameLibraryFile = gameLibrary?.let { library ->
-            val local = UriUtils.tryCreate(library)?.let { it.scheme == "file" } ?: true
+          val gameLibraryFile = gameLibrary?.let library@{ library ->
+            if(library.startsWith("http://") || library.startsWith("https://")) {
+              return@library library
+            }
 
             // ActionScript could not find relative or non-normalized files
-            if(local) Paths.get(library).absolute().normalize().pathString
-            else library
+            Paths.get(library).absolute().normalize().pathString
           }
 
           settings.gameLibrary = gameLibraryFile.also {

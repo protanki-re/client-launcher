@@ -59,12 +59,13 @@ class RunClient : CliktCommand(name = "run", help = "Run the client") {
       ?: profile.data.settings.chainloader
       ?: throw IllegalArgumentException("No chainloader specified")
 
-    val gameLibrary = gameLibrary?.let { library ->
-      val local = UriUtils.tryCreate(library)?.let { it.scheme == "file" } ?: true
+    val gameLibrary = gameLibrary?.let library@{ library ->
+      if(library.startsWith("http://") || library.startsWith("https://")) {
+        return@library library
+      }
 
       // ActionScript could not find relative or non-normalized files
-      if(local) Paths.get(library).absolute().normalize().pathString
-      else library
+      Paths.get(library).absolute().normalize().pathString
     }?.also {
       logger.debug { "Overridden game library: $it" }
     }
