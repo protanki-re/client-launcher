@@ -139,7 +139,7 @@ class RunClient : CliktCommand(name = "run", help = "Run the client") {
       }
     })
 
-    logger.info { "===== SERVER LOG BEGIN =====" }
+    logger.info { "===== CLIENT LOG BEGIN =====" }
     coroutineScope {
       launch {
         val writer = System.out.writer()
@@ -159,7 +159,7 @@ class RunClient : CliktCommand(name = "run", help = "Run the client") {
 
       launch {
         withContext(Dispatchers.IO) { process.waitFor() }
-        logger.info { "===== SERVER LOG END =====" }
+        logger.info { "===== CLIENT LOG END =====" }
       }
     }
   }
