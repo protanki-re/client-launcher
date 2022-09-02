@@ -14,10 +14,7 @@ fun ByteArray.hash(algorithm: String): ByteArray {
 }
 
 fun InputStream.hash(algorithm: String): ByteArray {
-  val digest = MessageDigest.getInstance(algorithm)
-  val stream = DigestInputStream(this, digest)
-  stream.use { it.skip(Long.MAX_VALUE) }
-  return digest.digest()
+  return readAllBytes().hash(algorithm)
 }
 
 fun Path.hash(algorithm: String): ByteArray = inputStream().use { it.hash(algorithm) }
